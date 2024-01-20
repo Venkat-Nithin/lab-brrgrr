@@ -1,6 +1,3 @@
-// Initial price of the burger
-var wholeWheatBun = 10;
-
 // Ingredients of the burger along with the price
 var ingredients = {
   Patty: 80,
@@ -19,77 +16,37 @@ var state = {
   Lettuce: true
 };
 
+// Toggle the state of an ingredient
+function toggleIngredient(ingredient) {
+  state[ingredient] = !state[ingredient];
+  renderAll();
+}
+
 // Render functions for each ingredient
 function renderPatty() {
   let patty = document.querySelector("#patty");
-  if (state.Patty) {
-    patty.style.display = "inherit";
-  } else {
-    patty.style.display = "none";
-  }
+  patty.style.display = state.Patty ? "inherit" : "none";
 }
 
 function renderCheese() {
   let cheese = document.querySelector("#cheese");
-  if (state.Cheese) {
-    cheese.style.display = "inherit";
-  } else {
-    cheese.style.display = "none";
-  }
+  cheese.style.display = state.Cheese ? "inherit" : "none";
 }
 
 function renderTomatoes() {
   let tomatoes = document.querySelector("#tomato");
-  if (state.Tomatoes) {
-    tomatoes.style.display = "inherit";
-  } else {
-    tomatoes.style.display = "none";
-  }
+  tomatoes.style.display = state.Tomatoes ? "inherit" : "none";
 }
 
 function renderOnions() {
   let onions = document.querySelector("#onion");
-  if (state.Onions) {
-    onions.style.display = "inherit";
-  } else {
-    onions.style.display = "none";
-  }
+  onions.style.display = state.Onions ? "inherit" : "none";
 }
 
 function renderLettuce() {
   let lettuce = document.querySelector("#lettuce");
-  if (state.Lettuce) {
-    lettuce.style.display = "inherit";
-  } else {
-    lettuce.style.display = "none";
-  }
+  lettuce.style.display = state.Lettuce ? "inherit" : "none";
 }
-
-// Event listeners for ingredient buttons
-document.querySelector(".btn-patty").onclick = function () {
-  state.Patty = !state.Patty;
-  renderAll();
-};
-
-document.querySelector(".btn-cheese").onclick = function () {
-  state.Cheese = !state.Cheese;
-  renderAll();
-};
-
-document.querySelector(".btn-tomatoes").onclick = function () {
-  state.Tomatoes = !state.Tomatoes;
-  renderAll();
-};
-
-document.querySelector(".btn-onions").onclick = function () {
-  state.Onions = !state.Onions;
-  renderAll();
-};
-
-document.querySelector(".btn-lettuce").onclick = function () {
-  state.Lettuce = !state.Lettuce;
-  renderAll();
-};
 
 // Render all ingredients
 function renderAll() {
@@ -128,13 +85,13 @@ function renderIngredientsBoard() {
 
 // Challenge 3: Calculate and display the cost of the burger
 function renderPrice() {
-  let totalPrice = wholeWheatBun;
+  let totalPrice = 0;
   for (let ingredient in state) {
     if (state[ingredient]) {
       totalPrice += ingredients[ingredient];
     }
   }
-  document.querySelector(".price-details").innerText = "Total Price: $" + totalPrice;
+  document.querySelector(".price-details").innerText = "Total Price: INR " + totalPrice;
 }
 
 // Initial rendering
